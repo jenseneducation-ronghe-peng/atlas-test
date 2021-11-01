@@ -1,10 +1,7 @@
 <template>
-  <v-card
-    class="ma-2 pa-6 flex-column justify-center card"
-    style="background: #380000"
-  >
+  <v-card class="ma-2 pa-6 flex-column justify-center" color="brown">
     <v-row justify="center" align-content="center">
-      <v-icon size="80" color="grey">mdi-account</v-icon>
+      <v-icon size="80" color="lgtgrey">mdi-account</v-icon>
     </v-row>
     <v-row justify="center" align-content="center">
       <h2>{{ character.name }}</h2>
@@ -22,7 +19,7 @@
       </v-col>
     </v-row>
     <v-row justify="center" align-content="center">
-      <v-icon x-large color="secondary">mdi-bitcoin</v-icon>
+      <v-icon x-large color="secondary">mdi-alpha-c-circle</v-icon>
       <v-col cols="9">
         <h3>{{ character.wealth }}</h3>
       </v-col>
@@ -42,9 +39,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.card {
-  background: #380000;
-}
-</style>

@@ -6,39 +6,49 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    status: "",
+    fetchStatus: "",
+    postStatus: "",
     character: {},
     equipments: [],
     focusItem: null,
     error: null,
   },
   getters: {
-    getStatus: (state) => {
-      return state.status;
+    getPostStatus: (state) => {
+      return state.postStatus;
     },
     getFocusItem: (state) => {
       return state.focusItem;
     },
   },
   mutations: {
-    INIT(state) {
-      state.status = "pending";
+    FETCH_INIT(state) {
+      state.fetchStatus = "pending";
     },
-    SAVE_CHARACTER(state, data) {
+    FETCH_CHARACTER_SUCCESS(state, data) {
+      state.fetchStatus = "success";
       state.character = data;
     },
-    SAVE_EQUIPMENT(state, data) {
+    FETCH_EQUIPMENT_SUCCESS(state, data) {
+      state.fetchStatus = "success";
       state.equipments = data;
     },
-    POST_EQUIPMENT(state) {
-      state.status = "success";
+    FETCH_ERROR(state, error) {
+      state.fetchStatus = "error";
+      state.error = error;
     },
-    SAVE_ERROR(state, error) {
-      state.status = "error";
+    POST_INIT(state) {
+      state.postStatus = "pending";
+    },
+    POST_SUCCESS(state) {
+      state.postStatus = "success";
+    },
+    POST_ERROR(state, error) {
+      state.postStatus = "error";
       state.error = error;
     },
     RESET_PURCHASE(state) {
-      state.status = "";
+      state.postStatus = "";
       state.error = null;
     },
     UPDATE_FOCUS_ITEM(state, data) {
@@ -47,31 +57,33 @@ export default new Vuex.Store({
   },
   actions: {
     async getCharacter({ commit }) {
+      commit("FETCH_INIT");
       try {
         const data = await fetchCharacter();
-        commit("SAVE_CHARACTER", data);
+        commit("FETCH_CHARACTER_SUCCESS", data);
       } catch (error) {
-        console.log(error);
+        commit("FETCH_ERROR", error);
       }
     },
     async getEquipments({ commit }) {
+      commit("FETCH_INIT");
       try {
         const data = await fetchEquipments();
-        commit("SAVE_EQUIPMENT", data);
+        commit("FETCH_EQUIPMENT_SUCCESS", data);
       } catch (error) {
-        console.log(error);
+        commit("FETCH_ERROR", error);
       }
     },
     async buyEquipment({ commit }, id) {
-      commit("INIT");
+      commit("POST_INIT");
       try {
         const data = { equipmentId: id };
-        await postPurchases(/* id */ data);
-        commit("POST_EQUIPMENT" /* , id*/);
+        await postPurchases(data);
+        commit("POST_SUCCESS");
         await this.dispatch("getCharacter");
         await this.dispatch("getEquipments");
       } catch (error) {
-        commit("SAVE_ERROR", error);
+        commit("POST_ERROR", error);
       }
     },
     cancelPurchase({ commit }) {

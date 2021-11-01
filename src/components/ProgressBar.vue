@@ -16,8 +16,8 @@ export default {
 };
 </script>
 
-<style scoped>
-.strong {
-  color: white;
-}
+<style lang="sass" scoped>
+@import ../sass/index.sass
+.strong
+  color: $lgtgrey
 </style>

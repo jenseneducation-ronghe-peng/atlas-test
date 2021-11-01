@@ -16,6 +16,8 @@ export default new Vuetify({
         bg: colors.grey.darken3,
         grey: colors.grey.lighten1,
         blue: colors.blue,
+        lgtgrey: colors.grey.lighten5,
+        brown: "#380000",
       },
     },
   },

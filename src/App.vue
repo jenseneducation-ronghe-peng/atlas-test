@@ -9,9 +9,7 @@
           </v-btn>
         </router-link>
       </div>
-
       <v-spacer></v-spacer>
-
       <router-link class="link" to="/cart" v-if="$route.path !== `/cart`">
         <v-btn text>
           <span class="mx-2">shopping cart</span>
@@ -19,7 +17,6 @@
         </v-btn>
       </router-link>
     </v-app-bar>
-
     <v-main>
       <v-container class="container" fluid style="max-width: 960px">
         <v-row align="center" justify="center" dense>
@@ -38,20 +35,21 @@ export default {
 };
 </script>
 
-<style>
-h1,
-h2,
-h3 {
-  color: #fbc02d;
-}
-h3,
-p {
-  color: lightgray;
-}
-#app {
-  background: #212121;
-}
-.link {
-  text-decoration: none;
-}
+<style lang="sass">
+@import sass/index.sass
+
+h1, h2
+  color: $secondary
+
+h3
+  color: $lgtgrey
+
+p
+  color: $lgtgrey
+
+#app
+  background: $primary
+
+.link
+  text-decoration: none
 </style>

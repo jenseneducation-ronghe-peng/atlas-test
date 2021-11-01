@@ -32,19 +32,19 @@
         <v-btn
           v-if="!character.equipment.includes(focusItem)"
           v-bind:disabled="
-            character.wealth < focusItem.value || getStatus !== ``
+            character.wealth < focusItem.value || getPostStatus !== ``
           "
           v-on:click="purchase(focusItem.id)"
           color="blue"
           width="150"
         >
-          <span v-if="getStatus === `success`">
+          <span v-if="getPostStatus === `success`">
             <v-icon color="green">mdi-check-bold</v-icon> thanks
           </span>
-          <span v-else-if="getStatus === `error`">
+          <span v-else-if="getPostStatus === `error`">
             <v-icon color="error">mdi-clear-bold</v-icon> please try again
           </span>
-          <span v-else-if="getStatus === `pending`">
+          <span v-else-if="getPostStatus === `pending`">
             <v-progress-circular
               indeterminate
               color="primary"
@@ -78,7 +78,7 @@ export default {
   },
   computed: {
     ...mapState(["equipments", "character"]),
-    ...mapGetters(["getStatus"]),
+    ...mapGetters(["getPostStatus"]),
   },
   methods: {
     ...mapActions([

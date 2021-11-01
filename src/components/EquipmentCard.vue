@@ -1,5 +1,6 @@
 <template>
   <v-card
+    color="brown"
     class="card d-flex justify-center align-center pa-4"
     height="300px"
     max-width="400px"
@@ -38,9 +39,8 @@ export default {
 };
 </script>
 
-<style scoped>
-.card {
-  background: #380000;
-  cursor: pointer;
-}
+<style lang="sass" scoped>
+@import ../sass/index.sass
+.card
+  cursor: pointer
 </style>

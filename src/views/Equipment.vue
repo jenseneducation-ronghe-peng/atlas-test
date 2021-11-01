@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     ...mapState(["equipments", "character"]),
-    ...mapGetters(["getStatus", "getFocusItem"]),
+    ...mapGetters(["getFocusItem"]),
   },
   methods: {
     ...mapActions(["getCharacter", "getEquipments", "setFocusItem"]),
