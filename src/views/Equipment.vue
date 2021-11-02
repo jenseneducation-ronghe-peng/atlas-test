@@ -20,7 +20,9 @@
       </v-col>
       <Overlay :focusItem="getFocusItem" />
     </v-row>
-    <Loading v-else />
+    <v-col cols="12" class="d-flex justify-center">
+      <h2>No equipments are available</h2>
+    </v-col>
   </v-row>
 </template>
 
@@ -28,7 +30,6 @@
 import { mapActions, mapGetters, mapState } from "vuex";
 import EquipmentCard from "../components/EquipmentCard.vue";
 import Overlay from "../components/Overlay.vue";
-import Loading from "../components/Loading.vue";
 
 export default {
   name: "Equipment",
@@ -51,7 +52,6 @@ export default {
   components: {
     EquipmentCard,
     Overlay,
-    Loading,
   },
   computed: {
     ...mapState(["equipments", "character"]),
