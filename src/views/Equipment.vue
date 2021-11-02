@@ -20,7 +20,7 @@
       </v-col>
       <Overlay :focusItem="getFocusItem" />
     </v-row>
-    <v-col cols="12" class="d-flex justify-center">
+    <v-col cols="12" class="d-flex justify-center" v-else>
       <h2>No equipments are available</h2>
     </v-col>
   </v-row>
